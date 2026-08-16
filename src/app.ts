@@ -8,6 +8,7 @@ import { env } from './config/env';
 import { logger } from './config/logger';
 import { errorHandler, notFoundHandler } from './common/middleware/error-handler';
 import healthRoutes from './modules/health/health.routes';
+import authRoutes from './modules/auth/auth.routes';
 
 export function createApp(): Express {
   const app = express();
@@ -39,6 +40,7 @@ export function createApp(): Express {
   // Health routes are unauthenticated and unversioned on purpose —
   // monitoring tools should never need to know about API versioning.
   app.use('/', healthRoutes);
+  app.use('/api/v1/auth', authRoutes);
 
   // Future modules mount here, e.g.:
   // app.use('/api/v1/auth', authRoutes);
