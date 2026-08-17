@@ -32,3 +32,10 @@ export async function login(req: Request, res: Response, next: NextFunction) {
     next(err);
   }
 }
+
+
+export async function me(req: Request, res: Response) {
+  // If we got here, requireAuth already verified the token and
+  // populated req.user — this handler doesn't re-check anything.
+  sendSuccess(res, { user: req.user });
+}
