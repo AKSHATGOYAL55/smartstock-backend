@@ -39,3 +39,7 @@ export async function me(req: Request, res: Response) {
   // populated req.user — this handler doesn't re-check anything.
   sendSuccess(res, { user: req.user });
 }
+
+export async function adminOnlyCheck(req: Request, res: Response) {
+  sendSuccess(res, { message: 'You are a Company Admin — access granted.' });
+}
