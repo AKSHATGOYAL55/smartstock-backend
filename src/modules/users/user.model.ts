@@ -1,4 +1,5 @@
 import { Schema, model, Types } from 'mongoose';
+import { tenantScopePlugin } from '../../common/plugins/tenant-scope.plugin';
 
 const userSchema = new Schema(
   {
@@ -20,5 +21,7 @@ const userSchema = new Schema(
 
 // Same email can exist in two different tenants — just not twice in the same one.
 userSchema.index({ tenantId: 1, email: 1 }, { unique: true });
+
+userSchema.plugin(tenantScopePlugin);
 
 export const User = model('User', userSchema);
