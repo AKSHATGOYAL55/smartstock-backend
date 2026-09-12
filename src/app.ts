@@ -9,6 +9,7 @@ import { logger } from './config/logger';
 import { errorHandler, notFoundHandler } from './common/middleware/error-handler';
 import healthRoutes from './modules/health/health.routes';
 import authRoutes from './modules/auth/auth.routes';
+import userRoutes from './modules/users/user.routes';
 
 export function createApp(): Express {
   const app = express();
@@ -41,6 +42,7 @@ export function createApp(): Express {
   // monitoring tools should never need to know about API versioning.
   app.use('/', healthRoutes);
   app.use('/api/v1/auth', authRoutes);
+  app.use('/api/v1/users', userRoutes)
 
   // Future modules mount here, e.g.:
   // app.use('/api/v1/auth', authRoutes);
